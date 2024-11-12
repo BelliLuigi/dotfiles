@@ -1,0 +1,319 @@
+global !p
+def text():
+	return vim.eval('vimtex#syntax#in_mathzone()') == '0'
+def math():
+    return vim.eval('vimtex#syntax#in_mathzone()') == '1'
+endglobal
+
+snippet mk "$$" A
+$$1$$0
+endsnippet
+
+snippet dm "line math" A 
+\[
+$1
+\]
+$0
+endsnippet
+
+snippet bg "begin environment" bA
+\begin{${1:itemize}}
+${2:\item}
+\end{$1}
+$0
+endsnippet
+
+context "math()"
+snippet matrix "matrix" iA
+\begin{pmatrix}
+${1:,,,,,}
+\end{pmatrix} $0
+endsnippet
+
+context "math()"
+snippet ,, "2x2"
+$1 & $2 \\\\
+$3 & $0
+endsnippet
+
+context "math()"
+snippet ,,, "3x3"
+$1 & $2 & $3 \\\\
+$4 & $5 & $6 \\\\
+$7 & $8 & $0
+endsnippet
+
+context "math()"
+snippet ,,,, "4x4" iA
+${1:0} & ${2:0} & ${3:0} & ${4:0} \\\\
+${5:0} & ${6:0} & ${7:0} & ${8:0} \\\\
+${9:0} & ${10:0} & ${11:0} & ${12:0} \\\\
+${13:0} & ${14:0} & ${15:0} & ${0:0}
+endsnippet
+
+context "math()" 
+snippet cases "cases" wA
+\begin{cases}
+$1 \\\\
+$2 \\\\
+\end{cases}
+$0
+endsnippet
+
+context "math()"
+snippet text "math text" A
+\text{ $1 }$0
+endsnippet
+
+snippet qe "equation" bA
+\begin{equation}
+$1
+\end{equation}
+$0
+endsnippet
+
+snippet qm "multiple equations" bA
+\begin{gather*}
+$1 \\\\
+\end{gather*}
+$0
+endsnippet
+
+snippet imm "immagine" bA
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{imm/$1}
+\caption{$2}
+\label{imm:$1}
+\end{figure}
+$0
+endsnippet
+
+priority 100
+snippet "([a-zA-Z]*)cmd" "retrocommand" riA
+\\`!p snip.rv=match.group(1)`{$1}$0
+endsnippet
+
+context "math()"
+snippet "([a-zA-Z])vec" "retrovec" riA
+\vec{`!p snip.rv=match.group(1)`}$0
+endsnippet
+
+context "text()"
+snippet "([a-zA-Z])vec" "retrovec" riA
+\textbf{`!p snip.rv=match.group(1)`}$0
+endsnippet
+
+context "text()" 
+snippet ** "Bold" iA
+\textbf{$1} $0
+endsnippet
+
+snippet sec "section" bA
+\section{$1}
+$0
+endsnippet
+
+snippet ssec "subsection" bA
+\subsection{$1}
+$0
+endsnippet
+
+snippet sssec "subsubsection" bA
+\subsubsection{$1}
+$0
+endsnippet
+
+context "text()"
+snippet em "emph" wA
+\emph{$1}$0
+endsnippet
+
+snippet hl "highlight" 
+\hl{$1} $0
+endsnippet
+
+context "math()"
+snippet hl "math highlight" A
+\colorbox{yellow}{$ $1  $} $0
+endsnippet
+
+snippet mini "minipage w/figure" bwA
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+    \vspace*{0pt}
+    $1
+\end{minipage}
+\begin{minipage}[t]{0.48\textwidth}
+    \vspace*{0pt} 
+    $2
+\end{minipage}
+$0
+endsnippet
+
+context "math()"
+snippet ò "pedix" iA
+_{$1}$0
+endsnippet
+
+context "math()"
+snippet à "apix" iA
+^{$1}$0
+endsnippet
+
+context "text()"
+snippet ò "pedix" iA
+\textsubscript{$1}$0
+endsnippet
+
+context "text()"
+snippet à "apix" iA
+\textsuperscript{$1}$0
+endsnippet
+
+context "math()"
+snippet fr "fraction" 
+\\frac{$1}{$2}$0
+endsnippet
+
+context "math()"
+priority 100
+snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)fr' "Fraction" wrA
+\frac{`!p snip.rv = match.group(1)`}{$1}$0
+endsnippet
+
+context "math()"
+priority 1000
+snippet '^.*\)f' "() Fraction" wrA
+`!p
+stripped = match.string[:-1]
+depth = 0
+i = len(stripped) - 1
+while True:
+	if stripped[i] == ')': depth += 1
+	if stripped[i] == '(': depth -= 1
+	if depth == 0: break;
+	i -= 1
+snip.rv = stripped[0:i] + "\\frac{" + stripped[i+1:-1] + "}" `{$1}$0
+endsnippet
+
+context "math()"
+snippet ( "\left(\right)" iA
+\left( $1 \right)$0
+endsnippet
+
+context "text()"
+snippet ( "()" iA
+($1)$0
+endsnippet
+
+snippet hh "hat" iA
+\hat{$1}$0
+endsnippet
+
+context "math()"
+snippet '(alpha|beta|gamma|delta|zeta|eta|theta|iota|kappa|lambda)' "greek letters" wrA
+\\`!p snip.rv = match.group(1)` $0
+endsnippet
+
+context "math()"
+snippet '(mu|nu|omicron|pi|rho|sigma|tau|upsilon|phi|chi|psi|omega)' "greek letters" wrA
+\\`!p snip.rv = match.group(1)` $0
+endsnippet
+
+context "math()"
+snippet '(Mu|Nu|Omicron|Pi|Rho|Sigma|Tau|Upsilon|Phi|Chi|Psi|Omega)' "greek letters" wrA
+\\`!p snip.rv = match.group(1)` $0
+endsnippet
+
+context "math()"
+snippet '(Alpha|Beta|Gamma|Delta|Zeta|Eta|Theta|Iota|Kappa|Lambda)' "greek letters" wrA
+\\`!p snip.rv = match.group(1)` $0
+endsnippet
+
+context "math()"
+snippet eps "epsilon" iA
+\epsilon $0
+endsnippet
+
+context "math()"
+snippet Eps "Epsilon" iA
+\Epsilon $0
+endsnippet
+
+context "math()""
+snippet dd "partial" iA
+\partial
+endsnippet
+
+context "math()"
+snippet ox "otimes"
+\otimes $0
+endsnippet
+
+context "math()"
+snippet o+ "oplus" 
+\oplus $0
+endsnippet
+
+context "math()"
+snippet ... "dots" iA
+\ldots $0
+endsnippet
+
+context "math()"
+snippet sum "sommatoria" iA
+\sum_{$1}^{$2}{$3}$0
+endsnippet
+
+context "math()"
+snippet int "integral" iA
+\int_{$1}^{$2}{$3}$0
+endsnippet
+
+context "math()"
+snippet to "to" iA
+\to $0
+endsnippet
+
+context "math()"
+snippet implies "implies" iA
+\implies $0
+endsnippet
+
+context "text()"
+snippet \\ "\par" iA
+\\par
+$0
+endsnippet
+
+context "math()"
+snippet nab "nabla" iA
+\nabla $0
+endsnippet
+
+context "math()"
+snippet RR "Real Numbers" iA
+\mathbb${1:R}$0
+endsnippet
+
+context "math()"
+snippet ov "overline" iA
+\overline{$1}$0
+endsnippet
+
+context "math()"
+snippet pd "partial derivative" iA
+\frac{\partial $1}{\partial $2} $0
+endsnippet
+
+context "math()"
+snippet stxt "shortintertext"
+\shortintertext{$1}
+$0
+endsnippet
+
+context "math()"
+snippet ~ "tilde on top" iA
+\tilde{$1}$0
+endsnippet
