@@ -18,7 +18,7 @@ endsnippet
 
 snippet bg "begin environment" bA
 \begin{${1:itemize}}
-${2:\item}
+${2:\item} $3
 \end{$1}
 $0
 endsnippet
@@ -294,7 +294,7 @@ endsnippet
 
 context "math()"
 snippet RR "Real Numbers" iA
-\mathbb${1:R}$0
+\mathbb{${1:R}}$0
 endsnippet
 
 context "math()"
@@ -307,11 +307,11 @@ snippet pd "partial derivative" iA
 \frac{\partial $1}{\partial $2} $0
 endsnippet
 
-context "math()"
-snippet stxt "shortintertext"
-\shortintertext{$1}
-$0
-endsnippet
+
+
+
+
+
 
 context "math()"
 snippet ~ "tilde on top" iA
