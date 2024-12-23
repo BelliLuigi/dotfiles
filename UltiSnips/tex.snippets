@@ -79,7 +79,7 @@ $1 \\\\
 $0
 endsnippet
 
-snippet imm "immagine" bA
+snippet img "immagine" bA
 \begin{figure}[h]
 \centering
 \includegraphics[width=\linewidth]{imm/$1}
@@ -202,6 +202,11 @@ snippet ( "\left(\right)" iA
 \left( $1 \right)$0
 endsnippet
 
+context "math()"
+snippet [ "[]" iA
+\left[ $1 \right]
+endsnippet
+
 context "text()"
 snippet ( "()" iA
 ($1)$0
@@ -217,12 +222,12 @@ snippet '(alpha|beta|gamma|delta|zeta|eta|theta|iota|kappa|lambda)' "greek lette
 endsnippet
 
 context "math()"
-snippet '(mu|nu|omicron|pi|rho|sigma|tau|upsilon|phi|chi|psi|omega)' "greek letters" wrA
+snippet '(mu|nu|xi|omicron|pi|rho|sigma|tau|upsilon|phi|chi|psi|omega)' "greek letters" wrA
 \\`!p snip.rv = match.group(1)` $0
 endsnippet
 
 context "math()"
-snippet '(Mu|Nu|Omicron|Pi|Rho|Sigma|Tau|Upsilon|Phi|Chi|Psi|Omega)' "greek letters" wrA
+snippet '(Mu|Nu|Xi|Omicron|Pi|Rho|Sigma|Tau|Upsilon|Phi|Chi|Psi|Omega)' "greek letters" wrA
 \\`!p snip.rv = match.group(1)` $0
 endsnippet
 
@@ -238,7 +243,7 @@ endsnippet
 
 context "math()"
 snippet Eps "Epsilon" iA
-\Epsilon $0
+\mathcal{${1:E}}$0
 endsnippet
 
 context "math()""
@@ -288,6 +293,12 @@ $0
 endsnippet
 
 context "math()"
+snippet \\ "\\" iA
+\\\\
+$0
+endsnippet
+
+context "math()"
 snippet nab "nabla" iA
 \nabla $0
 endsnippet
@@ -306,12 +317,6 @@ context "math()"
 snippet pd "partial derivative" iA
 \frac{\partial $1}{\partial $2} $0
 endsnippet
-
-
-
-
-
-
 
 context "math()"
 snippet ~ "tilde on top" iA
@@ -333,3 +338,42 @@ snippet bc "because" A
 because
 endsnippet
 
+context "math()"
+snippet fd "frac derivative, not partial" iA
+\frac{d $1}{d $2}$0
+endsnippet
+
+context "text()"
+snippet ST "spacetime" iA
+spacetime 
+endsnippet
+
+context "math()"
+snippet equ "equiv" iA
+\equiv
+endsnippet
+
+context "math()"
+snippet ' "prime" iA
+\prime 
+endsnippet
+
+context "math()"
+snippet no# "nonumber"
+\nonumber
+endsnippet
+
+context "math()"
+snippet sin "sin" iA
+\text{sin}$0
+endsnippet
+
+context "math()"
+snippet cos  "cos" iA
+\text{cos}$0
+endsnippet
+
+context "math()"
+snippet ln "natlog" iA
+\text{ln}$0
+endsnippet

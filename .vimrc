@@ -19,7 +19,7 @@ call plug#end()
 xnoremap <silent> y :w !wl-copy<CR><CR>
 noremap <silent> p :r !wl-paste<CR><CR>
 
-set scrolloff=10
+set scrolloff=999
 set wildmenu
 set cursorline
 set number
