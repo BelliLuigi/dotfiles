@@ -1,3 +1,5 @@
 # dotfiles
 
-Here there are my dotfiles/ tweaks, idk. For now I'm living on Vim+Latex so there are only related files.
+Started using kitty, it's cute.
+
+Here there are my dotfiles. For now I'm living on Vim+Latex so there are only related files.

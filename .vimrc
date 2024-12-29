@@ -4,7 +4,8 @@ Plug 'lervag/vimtex'
 let g:tex_flavor='latex'
 let g:vimtex_view_method='zathura'
 let g:vimtex_quickfix_mode=0
-set conceallevel=1
+set conceallevel=2
+set concealcursor=n
 let g:tex_conceal='abdmg'
 
 Plug 'sirver/ultisnips'
@@ -28,9 +29,10 @@ set mouse=a
 set title
 set spell
 set clipboard=unnamedplus
-set complete+=kspell
-set complete+=i
-set dictionary=rg/main.pdf
-set completeopt=menu,menuone,longest
+"set complete+=kspell
+"set complete+=i
+"set dictionary=rg/main.pdf
+"set completeopt=menu,menuone,longest
 set shortmess+=c
-
+highlight Conceal ctermbg=0 
+highlight SpellBad ctermbg=4
