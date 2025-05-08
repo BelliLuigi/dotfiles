@@ -1,6 +1,5 @@
 # dotfiles
 
-Gnome -> sway WIP
 
 Started using kitty, it's cute.
 
